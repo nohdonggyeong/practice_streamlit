@@ -1,40 +1,7 @@
 [[pages]]
 path = "app.py"
-name = "실습 프로젝트 완성본"
-
-
-[[pages]]
-path = "lectures/lecture_1.py"
-name = "1강 streamlit 소개"
+name = "포켓몬 도감"
 
 [[pages]]
-path = "lectures/lecture_2.py"
-name = "2강 개발환경 셋팅"
-
-[[pages]]
-path = "lectures/lecture_3.py"
-name = "3강 기본 위젯 사용법"
-
-[[pages]]
-path = "lectures/lecture_4.py"
-name = "4강 columns 이용한 위젯 배치"
-
-[[pages]]
-path = "lectures/lecture_5.py"
-name = "5강 form으로 데이터 추가하기"
-
-[[pages]]
-path = "lectures/lecture_6.py"
-name = "6강 session_state"
-
-[[pages]]
-path = "lectures/lecture_7.py"
-name = "7강 toggle 이용한 form 자동완성"
-
-[[pages]]
-path = "lectures/lecture_8.py"
-name = "8강 button을 이용한 포켓몬 삭제"
-
-[[pages]]
-path = "lectures/lecture_9.py"
-name = "9강 custom CSS"
+path = "practice/db_crud.py"
+name = "DB CRUD"

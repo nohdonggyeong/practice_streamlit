@@ -1,11 +1,35 @@
 import streamlit as st
+from st_pages import show_pages_from_config
 
 st.set_page_config(
-    page_title="포켓몬 도감",
+    page_title="DB CRUD",
     page_icon="./images/monsterball.png"
 )
+show_pages_from_config()
+st.markdown("""
+<style>
+img { 
+    max-height: 300px;
+}
+.streamlit-expanderContent div {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+[data-testid="stExpanderToggleIcon"] {
+    visibility: hidden;
+}
+.streamlit-expanderHeader {
+    pointer-events: none;
+}
+[data-testid="StyledFullScreenButton"] {
+    visibility: hidden;
+}
+</style>
+""", unsafe_allow_html=True)
 
-st.title("streamlit 포켓몬 도감")
+
+st.title("DB CRUD")
 st.markdown("**포켓몬**을 하나씩 추가해서 도감을 채워보세요!")
 
 type_emoji_dict = {
@@ -62,20 +86,34 @@ initial_pokemons = [
     },
 ]
 
+example_pokemon = {
+    "name": "알로라 디그다",
+    "types": ["땅", "강철"],
+    "image_url": "https://storage.googleapis.com/firstpenguine-coding-school/pokemons/alora_digda.webp"
+}
+
 if "pokemons" not in st.session_state:
     st.session_state.pokemons = initial_pokemons
 
+auto_complete = st.toggle("예시 데이터로 채우기")
 with st.form(key="form"):
     col1, col2 = st.columns(2)
     with col1:
-        name = st.text_input(label="포켓몬 이름")
+        name = st.text_input(
+            label="포켓몬 이름",
+            value=example_pokemon["name"] if auto_complete else ""
+        )
     with col2:
         types = st.multiselect(
             label="포켓몬 속성",
             options=list(type_emoji_dict.keys()),
             max_selections=2,
+            default=example_pokemon["types"] if auto_complete else []
         )
-    image_url = st.text_input(label="포켓몬 이미지 URL")
+    image_url = st.text_input(
+        label="포켓몬 이미지 URL",
+        value=example_pokemon["image_url"] if auto_complete else ""
+    )
     submit = st.form_submit_button(label="Submit")
     if submit:
         if not name:
@@ -100,3 +138,8 @@ for i in range(0, len(st.session_state.pokemons), 3):
                 st.image(pokemon["image_url"])
                 emoji_types = [f"{type_emoji_dict[x]} {x}" for x in pokemon["types"]]
                 st.text(" / ".join(emoji_types))
+                delete_button = st.button(label="삭제", key=i+j, use_container_width=True)
+                if delete_button:
+                    del st.session_state.pokemons[i+j]
+                    st.rerun()
+
