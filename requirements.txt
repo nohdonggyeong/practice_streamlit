@@ -1,1 +1,3 @@
 st-pages
+SQLAlchemy==2.0.27
+streamlit_js_eval
