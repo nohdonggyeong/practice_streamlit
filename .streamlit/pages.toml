@@ -1,7 +1,7 @@
 [[pages]]
 path = "app.py"
-name = "포켓몬 도감"
+name = "DB CRUD"
 
 [[pages]]
-path = "practice/db_crud.py"
-name = "DB CRUD"
+path = "pocketmon.py"
+name = "포켓몬 도감"
